@@ -83,4 +83,5 @@ clean:
 
 # utilities and alias
 try:debug
-	
+force: debug
+	-$(RM) $(EXE) *.o

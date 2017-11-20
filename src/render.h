@@ -1,6 +1,11 @@
 #ifndef RENDER_H
 #define RENDER_H
-#include <GLFW/glfw3.h>
+
+//extern GLuint shader_nav;
+
+
 void R_Init(void);
 void R_Frame(void);
+
+
 #endif

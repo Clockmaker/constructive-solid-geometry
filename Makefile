@@ -6,25 +6,10 @@ NAME = csg
 VPATH = src
 PATH_DEP = deps
 
-ifeq ($(OS),Windows_NT)
-	# directory separator
-	/=$(strip \)
-	#include win64.d
-	F_WIN= -mwindows 
-	F_OS = $(F_WIN)
-	EXE=$(NAME).exe
-	CC=gcc
-	RM=del /Q
-else
-	/=/
-	RM=rm -f
-	#include linux.d
-	#include macos.d
-endif
-
 # lazy way $(wildcard src/*.c)
 FILE=\
 	r_main\
+	glad\
 	main
 
 OBJ= $(FILE:=.o)
@@ -45,6 +30,27 @@ $(PATH_DEP)/%.d: ;
 CFLAGS= $(F_DEP)
 LDFLAGS= $(F_OS) $(F_OGL) $(F_GLFW)
 
+RM=rm -f
+
+# OS
+ifeq ($(OS), Windows_NT)
+	# directory separator
+	/=$(strip \)
+	#include win64.d
+	F_WIN= -mwindows
+	F_DEBUG+= -mconsole
+	F_OS = $(F_WIN)
+	EXE=$(NAME).exe
+	CC=gcc
+	#CLC=cls
+	RM=del /Q
+else
+	/=/
+	
+	# add -ldl to flags
+	#include linux.d
+	#include macos.d
+endif
 
 # objects
 %.o: %.c
@@ -56,7 +62,7 @@ $(EXE) : $(OBJ)
 	$(CC) -o $@ $^ $(LDFLAGS)
 
 #
-.PHONY:all clean debug run try
+.PHONY:all clean debug run try force
 .DEFAULT:all
 .SUFFIXES:
 .SECONDARY:
@@ -65,7 +71,8 @@ $(EXE) : $(OBJ)
 all:clean $(EXE)
 	@echo $(OS)
 
-debug:CFLAGS+= $(F_DEBUG) -mconsole
+debug:CFLAGS  += -include $(VPATH)/debug.h
+debug:LDFLAGS += $(F_DEBUG) 
 debug:run
 
 run:$(EXE)
@@ -74,6 +81,6 @@ run:$(EXE)
 clean:
 	-$(RM) $(EXE) *.o $(PATH_DEP)$/*.d
 
-# shorter alias just for convenience
+# utilities and alias
 try:debug
 	

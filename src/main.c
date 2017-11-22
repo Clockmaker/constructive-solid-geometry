@@ -21,9 +21,9 @@ int main(void) {
 
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) return -1;
 
-    DBG("%s (%s)", glGetString(GL_RENDERER), glGetString(GL_VENDOR));
-    DBG("OpenGL %s", glGetString(GL_VERSION));
-    DBG("GLSL %s", glGetString(GL_SHADING_LANGUAGE_VERSION));
+    D_LOG("%s (%s)", glGetString(GL_RENDERER), glGetString(GL_VENDOR));
+    D_LOG("OpenGL %s", glGetString(GL_VERSION));
+    D_LOG("GLSL %s", glGetString(GL_SHADING_LANGUAGE_VERSION));
 
     R_Init();
 

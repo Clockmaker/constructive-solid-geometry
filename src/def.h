@@ -13,7 +13,7 @@
 #define ARRAY_LENGTH(x) ( sizeof(x) / sizeof(x[0]) )
 
 #ifndef DEBUG_H
-	#define DBG(...) 
+	#define D_LOG(...) 
 	//null statement to avoid breaking something
 //{};;0
 #endif

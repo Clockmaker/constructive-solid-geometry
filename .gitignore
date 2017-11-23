@@ -1,6 +1,8 @@
 # Windows
 *.exe
 *.lnk
+# 
+*.zip
 
 # GCC
 *.o

@@ -7,16 +7,24 @@
 #define SCREEN_WIDTH
 
 //#define M_PI 3.1415926535897932384626 //math.h
-// long double pi
-#define PI 3.141592653589793238462643383279502884L
+#define PI 3.141592653589793238462643383279502884L // long double pi
 
 #define ARRAY_LENGTH(x) ( sizeof(x) / sizeof(x[0]) )
 
-#ifndef DEBUG_H
+#ifdef DEBUG
+#define D_LOG(...)\
+	printf("%s:%d> ",__FILE__,__LINE__);\
+	printf(__VA_ARGS__);\
+	printf("\n")
+
+#else
 	#define D_LOG(...) 
 	//null statement to avoid breaking something
-//{};;0
+	//{};;0
+
 #endif
+
 //typedef enum{false=0,true} bool;
+#define uint unsigned int
 
 #endif

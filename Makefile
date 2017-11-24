@@ -71,7 +71,7 @@ $(EXE) : $(OBJ)
 all:clean $(EXE)
 	@echo $(OS)
 
-debug:CFLAGS  += -include $(VPATH)/debug.h
+debug:CFLAGS  += -DDEBUG=0
 debug:LDFLAGS += $(F_DEBUG) 
 debug:run
 

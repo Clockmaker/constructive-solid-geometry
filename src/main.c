@@ -3,6 +3,7 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include "render.h"
+#include "input.h"
 
 int main(void) {
     GLFWwindow* window;
@@ -25,11 +26,18 @@ int main(void) {
     D_LOG("OpenGL %s", glGetString(GL_VERSION));
     D_LOG("GLSL %s", glGetString(GL_SHADING_LANGUAGE_VERSION));
 
-    R_Init();
+    //render
+    R_init();
+    glfwSetWindowSizeCallback(window,   R_resize);
+    
+    //input
+    glfwSetCursorPosCallback(window,   IN_onMouseMove);
+    glfwSetMouseButtonCallback(window, IN_onMouseClick);
+    glfwSetScrollCallback(window,      IN_onMouseScroll);
+
 
     while (!glfwWindowShouldClose(window)) {
-       
-        R_Frame();
+        R_frame();
 
         glfwSwapBuffers(window);
         glfwPollEvents();

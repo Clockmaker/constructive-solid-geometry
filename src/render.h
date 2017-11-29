@@ -4,8 +4,8 @@
 //extern GLuint shader_nav;
 
 
-void R_Init(void);
-void R_Frame(void);
-
+void R_init(void);
+void R_frame(void);
+void R_resize(GLFWwindow* window, int width, int height);
 
 #endif

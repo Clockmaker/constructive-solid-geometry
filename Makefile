@@ -22,6 +22,7 @@ F_OGL= -lopengl32 -lglu32
 F_GLFW= -lglfw3
 # auto-dependency
 F_DEP= -MT $@ -MMD -MP -MF $(PATH_DEP)/$*.d
+F_C99= -std=c99 -pedantic
 $(PATH_DEP)/%.d: ;
 .PRECIOUS: $(PATH_DEP)/%.d
 -include $(PATH_DEP)/$(DEP)

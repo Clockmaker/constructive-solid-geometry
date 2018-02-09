@@ -1,23 +1,20 @@
 # MAKEFILE
 #
-# just for windows :(
+# FIXME: just for windows :S
 #
 NAME = csg
 VPATH = src
 PATH_DEP = deps
 
-# lazy way $(wildcard src/*.c)
-FILE=\
-	r_main\
-	glad\
-	main
+FILE= $(basename $(notdir $(wildcard $(VPATH)/*.c)))
+
 
 OBJ= $(FILE:=.o)
-HDR= 
 DEP= $(FILE:=.d)
 
 # FLAGS
-F_DEBUG= -Werror -ffast-math -O3
+F_DEBUG= -Werror -ffast-math
+F_RELEASE= -O3
 F_OGL= -lopengl32 -lglu32
 F_GLFW= -lglfw3
 # auto-dependency
@@ -63,7 +60,7 @@ $(EXE) : $(OBJ)
 	$(CC) -o $@ $^ $(LDFLAGS)
 
 #
-.PHONY:all clean debug run try force
+.PHONY:all clean debug run try force release
 .DEFAULT:all
 .SUFFIXES:
 .SECONDARY:
@@ -76,7 +73,11 @@ debug:CFLAGS  += -DDEBUG=0
 debug:LDFLAGS += $(F_DEBUG) 
 debug:run
 
+release:LDFLAGS += $(F_RELEASE)
+	#@echo
+
 run:$(EXE)
+	@echo DEBUG $(OS)
 	$(EXE)
 
 clean:
@@ -84,5 +85,5 @@ clean:
 
 # utilities and alias
 try:debug
-force: debug
+force: clean debug
 	-$(RM) $(EXE) *.o

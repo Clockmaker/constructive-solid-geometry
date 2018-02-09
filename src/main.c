@@ -1,14 +1,20 @@
-#include "def.h"
+#include "define.h"
 #include "common.h"
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+#include "config.h"
+
+#include "matrix.h"
 #include "render.h"
 #include "input.h"
+#include "ui.h"
 
-int main(void) {
+int main(int argc, char *argv[]) {
     GLFWwindow* window;
+    //glfwSetErrorCallback();
     if (!glfwInit()) return -1;
-
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     //glfwWindowHint(GLFW_RESIZABLE, GL_TRUE);
 
     
@@ -28,6 +34,7 @@ int main(void) {
 
     //render
     R_init();
+    UI_init();
     glfwSetWindowSizeCallback(window,   R_resize);
     
     //input
@@ -38,7 +45,9 @@ int main(void) {
 
     while (!glfwWindowShouldClose(window)) {
         R_frame();
-
+        UI_frame();
+        
+        
         glfwSwapBuffers(window);
         glfwPollEvents();
     }

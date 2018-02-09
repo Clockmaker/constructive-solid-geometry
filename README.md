@@ -1,4 +1,5 @@
 # Still nothing to see
 
-[snapshot](../master/docs/snapshot.png)
-** early screenshot**
+![snapshot](../master/docs/snapshot.png)
+
+**early screenshot**

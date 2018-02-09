@@ -52,6 +52,12 @@ typedef double dmat4[16];
     0.0f, (Sy), 0.0f, 0.0f,\
     0.0f, 0.0f, (Sz), 0.0f,\
     0.0f, 0.0f, 0.0f, 1.0f }
+#define mat4_newScale1f(S) \
+    (mat4) {\
+     (S), 0.0f, 0.0f, 0.0f,\
+    0.0f,  (S), 0.0f, 0.0f,\
+    0.0f, 0.0f,  (S), 0.0f,\
+    0.0f, 0.0f, 0.0f, 1.0f }
 
 //TODO: missing arbirtrary rotation (vector+angle)
 static void mat4_identity(mat4 out);

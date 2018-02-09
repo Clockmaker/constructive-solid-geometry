@@ -35,7 +35,7 @@ struct mdl {
     GLfloat vertex[108];
 } navCube = { 
 .count = 36,
-.size = 16.0f,
+.size = 32.0f,
 .texture_uv = {
  0.000f,0.000f, 0.125f,0.000f, 0.125f,0.125f,  0.125f,0.125f, 0.000f,0.125f, 0.000f,0.000f,//Front
  0.125f,0.000f, 0.250f,0.000f, 0.250f,0.125f,  0.250f,0.125f, 0.125f,0.125f, 0.125f,0.000f,//Right
@@ -129,11 +129,11 @@ void UI_frame(void) {
     mat4_rotateXY(Camera.view, Camera.rot[0],Camera.rot[1]);
 
     mat4_multiply(Camera.matrix,  Camera.view, Camera.projection);
-
-    mat4_copy(navCube.matrix, Camera.projection);    
+    
+    //mat4_copy(navCube.matrix, mat4_newScale1f(navCube.size));
     mat4_multiply(navCube.matrix, Camera.view, Camera.projection);
     mat4_scale1f(navCube.matrix, navCube.size);
-    mat4_mul(navCube.matrix, mat4_newTranslate3f(1.0f-64.f/UI.width,1.0f-64.f/UI.height,0.f));
+    mat4_mul(navCube.matrix, mat4_newTranslate3f(1.0f-4*navCube.size/UI.width,1.0f-4*navCube.size/UI.height,0.f));
 
     
 
@@ -141,7 +141,6 @@ void UI_frame(void) {
     //glBindBuffer(GL_ARRAY_BUFFER, navCube.vbo);
     glUseProgram(navCube.shader);
     glUniformMatrix4fv(0, 1, GL_FALSE, navCube.matrix); //glGetUniformLocation(navCube.shader, "model")
-    glUniformMatrix4fv(1, 1, GL_FALSE, navCube.projection); //glGetUniformLocation(navCube.shader, "projection")
     glDrawArrays(GL_TRIANGLES, 0, navCube.count); //glDrawElements(GL_TRIANGLES, navCube.count, GL_UNSIGNED_SHORT, NULL);
     
 

@@ -18,7 +18,7 @@ int main(int argc, char *argv[]) {
     //glfwWindowHint(GLFW_RESIZABLE, GL_TRUE);
 
     
-    window = glfwCreateWindow(640, 640, "CSG", NULL, NULL);
+    window = glfwCreateWindow(640, 480, "CSG", NULL, NULL);
     if (!window) {
         glfwTerminate();
         return -1;

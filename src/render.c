@@ -10,7 +10,7 @@
 
 void R_init(void){
     glClearColor( 0.16, 0.16, 0.16, 1.0 );
-    R_setScreen(640,640);
+    R_setScreen(640,480);
     //glCullFace(GL_BACK);
     //glFrontFace(GL_CCW);
     glEnable(GL_BLEND);

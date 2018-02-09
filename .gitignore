@@ -7,3 +7,7 @@
 # GCC
 *.o
 *.d
+
+#Adobe
+.psd
+.ai

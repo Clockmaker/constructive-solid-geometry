@@ -42,7 +42,12 @@ int main(int argc, char *argv[]) {
     glfwSetMouseButtonCallback(window, IN_onMouseClick);
     glfwSetScrollCallback(window,      IN_onMouseScroll);
 
-
+    glfwSwapInterval(1);
+    /*
+    double timeNew;
+    const double framerate = 1/128.f;
+    */
+    glfwSetTime(0);
     while (!glfwWindowShouldClose(window)) {
         R_frame();
         UI_frame();

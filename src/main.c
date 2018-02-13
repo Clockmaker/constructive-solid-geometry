@@ -49,12 +49,19 @@ int main(int argc, char *argv[]) {
     */
     glfwSetTime(0);
     while (!glfwWindowShouldClose(window)) {
+        //glfwWaitEventsTimeout();
+        
+        /*
+        timeNew = glfwGetTime();
+        while(glfwGetTime() - timeNew < framerate){
+            
+        }
+        */
         R_frame();
         UI_frame();
         
-        
         glfwSwapBuffers(window);
-        glfwPollEvents();
+        glfwWaitEvents();
     }
 
     glfwTerminate();
